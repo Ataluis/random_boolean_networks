@@ -1,3 +1,7 @@
+/*
+  This is the main file of our simulation program. We do not have to make any changes here
+  and should instead use the DEFINITIONS.hpp file for the options we want to use.
+*/
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -50,8 +54,10 @@ int main()
   
   Space space;
   
+  //This is the loop in which we run the realizations
   for(int realizations = 0; realizations < REALIZATIONS; realizations++)
   {
+    //We first initialize a random netork
     cout << realizations << endl;
     if(DEGREE_EQUALS_NODES)
     {
@@ -75,6 +81,9 @@ int main()
 	    KBN.create_coupling_functions();
 	}
 
+    //Now we simulate through the network phase space
+    //and store for each state its upcoming state in 
+    //the vector timestep
     for(int i = 0; i < PHASE_SPACE; i++)
     {
       KBN.initialize_state(bitset<NODES>(i));
@@ -82,8 +91,11 @@ int main()
       timestep[i] = (int)((KBN.state()).to_ulong());
       //~ timestep[i] = rand() % PHASE_SPACE;
     }
-
+    
+    //Creating the structure of the phase space which we then analyze
     space.create(timestep);
+	  
+    //We store the name of every attractor
     attractor_nodes.clear();
     for(auto node : space.node)
     {
@@ -91,10 +103,13 @@ int main()
     }
     number_attractors = attractor_nodes.size();
     
+    //The following loop cylces over all the found attractors
     for(auto node : attractor_nodes)
     {
       basin_of_attraction = 0;
       garden_of_eden = 0;
+	    
+      //Counting the basin of attraction and garden of eden states
       for(int omega = 0; omega < PHASE_SPACE; omega++)
       {
         if(node == space.node[omega].end)
@@ -108,6 +123,8 @@ int main()
       end = node;
       state_before = bitset<NODES>(current);
       to_test.push_back(current);
+	    
+      //In this timestep we store which of the nodes of the cycle are frozen
       frozen.set();
       while(space.node[current].next != end)
       {
@@ -117,7 +134,6 @@ int main()
         state_before = bitset<NODES>(current);
         to_test.push_back(current);
       }
-      
       num_frozen = 0;
       num_nonfrozen = 0;
       for(int n = 0; n < NODES; n++)
@@ -131,6 +147,8 @@ int main()
           num_nonfrozen++;
         }
       }
+	    
+      //Now we look if a node flip leads to a change of attractors
       frozen_stable = 0;
       nonfrozen_stable = 0;
       frozen_unstable = 0;
@@ -165,13 +183,14 @@ int main()
           }
         }
       }
+      //Finally we store the just collected information
       info.push_back(vector<int>{NODES, (int)round(DEGREE), number_attractors, length, num_frozen, frozen_stable, frozen_unstable, num_nonfrozen, nonfrozen_stable, nonfrozen_unstable, basin_of_attraction, garden_of_eden});
       to_test.clear();
     }
     space.destroy();
   }
   
-  
+  //In the end we store the collected data in a file
   ofstream data;
   data.open(FILE_NAME, ios::out);
   for(auto vec : info)
