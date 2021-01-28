@@ -4,7 +4,7 @@ To run a simulation you have to change the values of the network in the file "DE
 
 > make -B && ./main
 
-At the end of the simulation will get stored in the specified file in the directory master. Within this there are also a number of python files prepared with wich we can analyse the data.
+At the end of the simulation the results will get stored in the specified file in the directory master. Within this there are also a number of python files prepared with wich we can analyse the data.
 
 The index of the values is listed in the following order (from left to right in the files):
 
