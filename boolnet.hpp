@@ -1,3 +1,15 @@
+//--Random Boolean Network (N-K model)------------------------------------------------------------//
+//--                                                                                              //
+//--For the members of RBN we use the most common naming conventions found in literature (Aldana- //
+//--Gonzales et al. (2003)). The methods are named in a somewhat self-explanatory manner. The     //
+//--easiest way to start with this class is:                                                      //
+//-- 1. initialize it with the desired parameters                                                 //
+//-- 2. call create_all()                                                                         //
+//-- 3. call evolve_state() to move on one step in time                                           //
+//--Depending on the research problem one could also create everything individually. For some     //
+//--problems it might be interesting to flip the value of a vertex, which can be done with calling//
+//--change_sigma(int).                                                                            //
+//------------------------------------------------------------------------------------------------//
 #ifndef BOOLNET_HPP
 #define BOOLNET_HPP
 
@@ -17,18 +29,6 @@
 #include <algorithm>
 #include "DEFINITIONS.hpp"
 
-//--Random Boolean Network (N-K model)------------------------------------------------------------//
-//--                                                                                              //
-//--For the members of RBN we use the most common naming conventions found in literature (Aldana- //
-//--Gonzales et al. (2003)). The methods are named in a somewhat self-explanatory manner. The     //
-//--easiest way to start with this class is:                                                      //
-//-- 1. initialize it with the desired parameters                                                 //
-//-- 2. call create_all()                                                                         //
-//-- 3. call evolve_state() to move on one step in time                                           //
-//--Depending on the research problem one could also create everything individually. For some     //
-//--problems it might be interesting to flip the value of a vertex, which can be done with calling//
-//--change_sigma(int).                                                                            //
-//------------------------------------------------------------------------------------------------//
 class RBN
 {
 public:
@@ -79,112 +79,6 @@ protected:
   std::string m_name;
 };
 
-//--Topological Random Boolean Network------------------------------------------------------------//
-//--                                                                                              //
-//--Almost the same as RBN, but the structure of the Network has to be given to it as an argument.//
-//--Since the degree is not any longer constant, we also store the information about them for each//
-//--vertex in the field m_k.                                                                      //
-//------------------------------------------------------------------------------------------------//
-//~ class TRBN : public RBN
-//~ {
-//~ public:
-  //~ TRBN(std::vector<std::vector<int> > t_network={}, double t_p=0.5, double t_bias=0.5);
-  //~ ~TRBN();
-  //~ double k_mean() const;
-  //~ void create_coupling_functions();
-  //~ void create_coupling_functions(const double&);
-  //~ void initialize_all();
-//~ private:
-  //~ double m_k_mean;
-  //~ std::vector<int> m_k;
-//~ };
-
-//--Attractor-------------------------------------------------------------------------------------//
-//--                                                                                              //
-//------------------------------------------------------------------------------------------------//
-//~ class Attractor
-//~ {
-//~ protected:
-  //~ std::vector<std::bitset<NODES> > m_path;
-  //~ std::set<std::bitset<NODES> > m_elements;
-  //~ std::set<std::bitset<NODES> > m_attractor;
-  //~ bool m_found_attractor = false;
-  //~ std::bitset<NODES> m_label;
-//~ public:
-  //~ Attractor();
-  //~ ~Attractor();
-  //~ void insert_path(const std::bitset<NODES>&);
-  //~ void insert_element(const std::bitset<NODES>&);
-  //~ bool has_attractor() const;
-  //~ std::vector<std::bitset<NODES> > path() const;
-  //~ std::set<std::bitset<NODES> > elements() const;
-  //~ std::set<std::bitset<NODES> > attractor() const;
-  //~ std::bitset<NODES> random_attractor_element() const;
-  //~ std::bitset<NODES> label() const;
-  //~ friend bool operator<(const Attractor&, const Attractor&);
-  //~ friend bool operator==(const Attractor&, const Attractor&);
-  //~ friend Attractor operator+(const Attractor&, const Attractor&);
-//~ };
-
-//~ std::ostream& operator<<(std::ostream&, Attractor&);
-
-//~ inline bool operator<(const Attractor& left, const Attractor& right)
-//~ {
-  //~ if((left.attractor()).size() != (right.attractor()).size())
-  //~ {
-    //~ if((left.attractor()).size() < (right.attractor()).size())
-    //~ {
-      //~ return true;
-    //~ }
-    //~ return false;
-  //~ }
-  //~ else
-  //~ {
-    //~ return left.label().to_ullong() < right.label().to_ullong();
-  //~ }
-//~ }
-
-//~ inline bool operator==(const Attractor& left, const Attractor& right)
-//~ {
-  //~ return *((left.attractor()).begin()) == *((right.attractor()).begin());
-//~ }
-
-//~ inline Attractor operator+(const Attractor& left, const Attractor& right)
-//~ {
-  //~ Attractor sum = left;
-  //~ for(unsigned int i = 0; i < (right.path()).size() - (right.attractor()).size(); i++)
-  //~ {
-    //~ sum.insert_element((right.path())[i]);
-  //~ }
-  //~ return sum;
-//~ }
-
-//~ class BasinSortedAttractor : public Attractor
-//~ {
-//~ public: 
-  //~ BasinSortedAttractor(){};
-  //~ BasinSortedAttractor(Attractor& attractor) : Attractor(attractor) {};
-//~ };
-
-//~ inline bool operator<(const BasinSortedAttractor& left, const BasinSortedAttractor& right)
-//~ {
-  //~ if((left.elements()).size() != (right.elements()).size())
-  //~ {
-    //~ if((left.elements()).size() < (right.elements()).size())
-    //~ {
-      //~ return true;
-    //~ }
-    //~ return false;
-  //~ }
-  //~ else
-  //~ {
-    //~ return left.label().to_ullong() < right.label().to_ullong();
-  //~ }
-//~ }
-
-//--Distribution----------------------------------------------------------------------------------//
-//--                                                                                              //
-//------------------------------------------------------------------------------------------------//
 class Distribution
 {
   std::map<int, double> m_distribution;
@@ -198,16 +92,10 @@ public:
 
 std::ostream& operator<<(std::ostream&, Distribution&);
 
-//Creating all possible bitset<NODES> in a set
-//~ std::set<std::bitset<NODES> > all_initial_values(const int&);
-
 //Some measurement functions
 int hamming_distance(const std::bitset<NODES>&, const std::bitset<NODES>&);
 double normalized_distance(const std::bitset<NODES>&, const std::bitset<NODES>&);
 double normalized_overlap(const std::bitset<NODES>&, const std::bitset<NODES>&);
-
-//Function to identify the frozen nodes in an attractor cycle
-//~ std::bitset<NODES> identify_frozen_vertices(Attractor); 
 
 //Network creating functions
 void make_lattice_dim2(const int&, const int&,
