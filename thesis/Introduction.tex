@@ -1,0 +1,57 @@
+\chapter{Introduction}\thispagestyle{fancy}
+\paragraph*{}
+If you have ever encountered a scientific publication that touches on a biological topic from the viewpoint of complex systems, you will most likely have come across a line like this: "Life lies on the edge of chaos."
+
+\paragraph*{}
+This sentence might seem to be a philosophical statement to someone outside of this field and even sound a little bit esoteric. When in reality, it is nothing than a well-grounded scientific hypothesis. It relies on the observation that many complex systems have two different poles of behavior for certain values of their underlying parameters. On the one side of the spectrum, we have almost perfect predictability and everything seems to be kind of boring because not much is happening at all. On the opposite of this, dynamical systems can behave almost randomly and there seems to be not much long-term predictability left.
+
+
+\paragraph*{}
+Both of those dynamic characteristics are not very suitable for life. It is a constantly changing process but not one where all previous information is irrelevant and can be lost. But there exists something in between, a border that separates the frozen and the chaotic phase. Systems that lie exactly on this border are called critical. They do not behave simply as a combination of the other two phases but rather exhibit some characteristics uniquely belonging to them. Their dynamics are often fairly complex, but not to the degree to which we would also view them completely random. Therefore, critical systems seem to be a reasonable place for finding models that describe biological processes.
+
+\paragraph*{}
+Random Boolean networks are a prototypical example of complex time-discrete dynamical systems. Moreover, they have been proposed as a first-order approximation of gene regulatory networks by S. Kauffman \cite{kauffman1969metabolic} in 1969. To be a little more specific, he did not actually invent them but rather defined a specific type of them, which he viewed as capable of modeling their biological counterparts.\footnote{The idea of studying boolean networks originated in 1966 and was first published by C. Walker and W. Ashby \cite{walker1966temporal}. In the literature, they are often not even mentioned and S. Kauffman is falsely credited to be their inventor. He was instead the first one studying them thoroughly and only through his work they gained the popularity they had in the second half of the 20th century.} During morphogenesis, genes can be viewed as being either expressed or not. How they change over time depends on the expression levels of a few other ones. Those dependencies define a network structure and the influence the genes have on each other can be modeled as Boolean functions.
+
+\paragraph*{}
+This description is a heavy simplification of the real biological process. Still, it is already sufficient to demonstrate stability, similar to the behavior observed in real cells, which S. Kauffman already noticed in his previously mentioned work. This given perspective on Boolean networks is only a little motivation and provides an argument for the relevance of studying such systems in the first place. But as this thesis belongs in the field of physics, this is as far as we will go with the biological background. 
+
+\paragraph*{}
+
+We will be focusing on the model itself and study its properties. It is not limited to the cell processes and could easily describe some phenomena of, for example, social interactions and other interesting topics. We started our studies with the main focus on critical networks but realized that it is more useful to consider systems in all phases and draw direct comparisons. Our main goal was to observe different statistical properties of attractors and their stability under the influence of noise. To understand random Boolean networks, we do not assume any previous familiarity with the topic and therefore introduce all necessary background knowledge.
+
+\paragraph*{}
+The first section is a general take on discrete dynamical systems. We define them and explain what attractors are and the stability of them. Thereafter we provide a brief introduction to probability theory and introduce random variables to define the expected value and its standard deviation, which we use throughout our whole work. The third section is about graphs and defines nodes, edges and the degree of a node. In those first three sections, we limited ourselves only to the relevant things for random Boolean networks. But even though we did not need it for our studies, we also had to include some definitions, like the adjacency matrix of a graph, since one will definitely be confronted with it in the literature.
+
+\paragraph*{}
+The fourth section is about binary logic and is comparably longer than what you would find in other works on random Boolean networks. But we felt that this is an unjust under\-representation of this field since it is actually useful for a better understanding and therefore decided to present it like this anyway. Here we introduce boolean variables, explain how to work with them in general and in the end, define boolean functions. This approach came in quite handy when developing and testing the algorithms that we build for our simulations.
+
+
+\paragraph*{}
+After this preparation, the last two sections of this chapter are about the random Boolean network model. We start by collecting the relevant things from the previous sections to define it. Then we go through an example network and thereby learn about the dynamics of it. Here we come across the concepts of attractors, their basins of attraction and garden-of-Eden states. 
+
+\paragraph*{}
+Since we are mainly concerned with ensembles of networks rather than individual realizations, the last section goes through the details of this and gives an outlook on what to expect. We specify the different ways to let the machine sample through random network realizations. Namely how to decide on the graph structure and choosing the boolean functions. The hamming distance is introduced as a useful tool for observing how different two states are compared to each other. Also, we define ergodic sets, which we will come across in our main work.
+
+\paragraph*{}
+After the theoretical background has been built up, we come to our main work in Chapter 3. We use the model introduced by S. Kauffman. Therefore we start by looking at the networks' topological structure and compare the node degree to the theoretically predicted Poisson approximation. The section afterward is on the dynamical differences for networks in the different phases. We reproduce the development of the Hamming distance for two slightly different states over time, which is a well-known aspect of random Boolean networks throughout the literature.
+
+\paragraph*{}
+To gain further insights into the dynamics of our model, we also introduce the annealed approximation. It can be used to predict the growth of the Hamming distance of two consecutive time steps for networks in the chaotic phase. We also compare this theoretical result to what can be observed for the real networks and find that it is pretty accurate.
+
+\paragraph*{}
+Right thereafter, we will come to the essential part of our research. We study the attractors and, more specifically, the averages of the basins' sizes and especially look at how the length or the number of attractors in a single realization influences it in all different phases and analyze the garden-of-Eden states. 
+
+\paragraph*{}
+We will find that the chaotic phase behaves in a way that is most similar describable to a random walk with no repetition over a finite number of elements. On the other hand, the frozen systems are boring because the dynamic dies out rather quickly and there is not too much happening at all with them. The exact values we find are still interesting and can be compared to what we figured out for the critical systems.
+
+\paragraph*{}
+The sizes of the basins of attraction for critical networks can best be explained with independent subsystems and their subattractors. Those influences the number of attractors one can observe in a single realization on average, which determines the size of the basin of attraction. As a general rule, it can be stated that the more attractors a run has, the smaller its basin gets.
+
+\paragraph*{}
+In the last part, we also wanted to know more about the attractor's stability and analyze the effect that single node flips have on the dynamic. More specifically, we divide the nodes into the frozen and not-frozen ones, which means if they change between the cycle states. We could observe that there is almost no difference between the node groups for critical networks, though the frozen ones are a little bit more stable. In the frozen phase, the frozen nodes are much more stable and in the chaotic phase, the active ones are more so, even though they are overall much less stable than the other networks.
+
+\paragraph*{}
+We tried to maintain balance in providing enough background information that even someone unfamiliar with the topic will understand it with minimal prerequisites and, on the other hand, pointing out where our personal contributions to the field lie. Therefore, the first half focuses on all kinds of definitions and gives some examples to understand the dynamic of random Boolean networks. The second half contains the results of all our simulations, which are both: reproduction of known behavior and our very own results. The latter have to our best knowledge not been done somewhere before and could not be found throughout the literature. In the end, we will shortly recapitulate all this and give some ideas for how to go further with the research starting from our work.
+
+\newpage
+\thispagestyle{empty}

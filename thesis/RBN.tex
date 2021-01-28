@@ -1,0 +1,118 @@
+\documentclass[11pt,a4paper,openleft]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[sort]{cite}
+\usepackage[english]{babel}
+% \usepackage{amsmath}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{upgreek}
+\usepackage{graphicx}
+%\usepackage{floatrow}
+\usepackage{lmodern}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{transparent}
+\usepackage[top=2cm, bottom=2cm, inner=2cm, outer=3cm]{geometry}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\tikzset{>=latex}
+\tikzstyle{vertex}=[circle, draw, thick, inner sep=0pt, minimum size=20pt]
+\newcommand{\vertex}{\node[vertex]}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\nouppercase\leftmark}
+\fancyhead[RE]{\rightmark}
+\fancyfoot[LO]{\thepage}
+\fancyfoot[RE]{\thepage}
+\captionsetup{figurename=Figure,position=above}
+\usepackage[toc,page]{appendix}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\makeatletter
+\newcommand{\thickhline}{%
+	\noalign {\ifnum 0=`}\fi \hrule height 1pt
+	\futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+\setlength{\parindent}{0.1cm} %no indent for the paragraphs
+
+\author{Fabian Farina}
+\title{Attractors and their Basins of Attraction in Random Boolean Networks}
+
+\begin{document}
+	%titlepage
+	\thispagestyle{empty}
+	\newgeometry{top=2cm, bottom=2cm, inner=2cm, outer=2cm}
+	\begin{center}
+		\begin{minipage}{0.85\linewidth}
+			\centering
+			%University logo
+			%\includegraphics[width=0.3\linewidth]{logo.pdf}
+			\vspace*{3.5cm}
+            {{\Large Goethe University Frankfurt\\
+            		\vspace*{0.2cm}
+            		\large Faculty of Physics\\
+            		Institute for Theoretical Physics\par}}
+			%Thesis title
+			\vspace*{2.5cm}
+			{\large Master Thesis\par}
+			\vspace*{1.5cm}
+			{{\Large Attractors and their Basins of Attraction in Random Boolean Networks\par}}
+			\vspace*{3cm}
+			{Author:\\
+				Fabian Farina\par}
+			\vspace{1cm}
+			%Author's name
+		    \begin{minipage}{0.645\linewidth}
+		    	{Supervisor:\\
+		    		Prof. Dr. Claudius Gros\par}
+		    \end{minipage}
+	    \begin{minipage}{0.345\linewidth}
+	    	{\flushright Second Assessor:\\
+	    		Prof. Dr. Jochen Trieschblocksatz\par}
+	    \end{minipage}
+        \begin{minipage}{\linewidth}
+        	{\centering\vspace{3.5cm}
+        		%Date
+        		{\Large January 2021}\par}
+        \end{minipage}
+		\end{minipage}
+	\end{center}
+	\clearpage
+	\restoregeometry
+\newpage
+\thispagestyle{empty}
+\clearpage
+\tableofcontents
+\thispagestyle{empty}
+\clearpage
+\thispagestyle{empty}
+\clearpage
+
+\setcounter{page}{1}
+
+\include{Introduction}
+
+\include{Theoretical_Background}
+
+\include{Methods_and_Results}
+
+\include{Conclusion}
+
+\include{Appendix}
+
+\bibliographystyle{abbrv}
+\bibliography{bibfile}
+
+\include{declaration}
+\end{document}
