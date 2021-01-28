@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 from collections import defaultdict
-from itertools import islice
 import matplotlib.gridspec as gridspec
 
 #plot settings
