@@ -1,3 +1,9 @@
+/*
+   This header contains the classes which we will use in order to analyse the structure 
+   of the phase space. We decided to separate it from the random boolean network part,
+   since it can principally be used for other models with a finitely large discrete
+   phase space.
+*/
 #ifndef ALTNET_HPP
 #define ALTNET_HPP
 
@@ -8,6 +14,7 @@
 #include <iostream>
 #include "DEFINITIONS.hpp"
 
+// The node structure is similar to that of a tree leaf (graph)
 struct Node
 {
   static int counter;
@@ -21,19 +28,10 @@ struct Node
   friend bool operator==(const Node&, const Node&);
 };
 
-//~ struct Meta
-//~ {
-  //~ std::bitset<NODES> end;
-  //~ int length, basin, garden_of_eden_states;
-  //~ Meta() : end({}), length(0), basin(0), garden_of_eden_states(0) {}
-  //~ friend bool operator<(const Meta&, const Meta&);
-  //~ friend bool operator==(const Meta&, const Meta&);
-//~ };
-
+// A space object uses the Node class in order to generate the structure of the phase space
 struct Space
 {
-  std::vector<Node> node;//[PHASE_SPACE];
-  //~ std::set<Meta> attractors;
+  std::vector<Node> node;
   void create(const std::vector<int>&);
   void destroy();
 };
